@@ -1,5 +1,5 @@
 // AES-GCM encryption for secrets (creator API keys, action credentials).
-// MASTER_KEY is a base64 32-byte key set as an environment variable.
+// MASTER_KEY: a base64 32-byte key, or any random secret of 16+ characters.
 
 const enc = new TextEncoder();
 const dec = new TextDecoder();
@@ -8,10 +8,15 @@ let cached: CryptoKey | null = null;
 
 async function masterKey(): Promise<CryptoKey> {
   if (cached) return cached;
-  const b64 = Deno.env.get("MASTER_KEY");
-  if (!b64) throw new Error("MASTER_KEY env var is not set");
-  const raw = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-  if (raw.length !== 32) throw new Error("MASTER_KEY must be 32 bytes, base64");
+  const secret = (Deno.env.get("MASTER_KEY") ?? "").trim();
+  if (secret.length < 16) throw new Error("MASTER_KEY env var is missing or too short (use 16+ random characters)");
+  // A base64 32-byte key is used as-is; any other secret is stretched with SHA-256.
+  let raw: Uint8Array<ArrayBuffer> | null = null;
+  try {
+    const d = Uint8Array.from(atob(secret), (c) => c.charCodeAt(0));
+    if (d.length === 32) raw = d;
+  } catch { /* not base64 */ }
+  if (!raw) raw = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(secret)));
   cached = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt", "decrypt"]);
   return cached;
 }
