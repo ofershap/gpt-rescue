@@ -43,7 +43,7 @@ ${body}
 export function landingPage() {
   return layout("GPT Rescue - keep serving your Custom GPT customers after December 11", `
 <div class="hero">
-  <div class="pill">OpenAI's help page: custom GPTs stop running December 11, 2026 (dates marked "subject to change")</div>
+  <div class="pill">Per OpenAI's help page, custom GPTs are scheduled to retire on December 11, 2026</div>
   <h1>Your Custom GPT is being retired.<br>Your customers don't have to lose it.</h1>
   <p>Paste your GPT's instructions, knowledge files and action schema. Get back a private link your customers can keep using, and a connector that puts your GPT, files and actions back inside ChatGPT. Per-customer access you control. Free and open source.</p>
   <p><a class="btn" href="/new">Rescue my GPT - free</a> &nbsp; <a class="btn ghost" href="#how">How it works</a></p>
@@ -52,11 +52,11 @@ export function landingPage() {
 <section>
   <h2>What the plugin migration leaves behind</h2>
   <div class="grid">
-    <div class="card"><ul class="x"><li>Share links. Migrated plugins start private, so the link you sent customers stops being the way in.</li></ul></div>
-    <div class="card"><ul class="x"><li>Custom actions. They don't transfer through the migration workflow and have to be rebuilt.</li></ul></div>
-    <div class="card"><ul class="x"><li>Your customers' access. There is no "anyone with the link" for people outside your workspace, only the public directory after review.</li></ul></div>
+    <div class="card"><ul class="x"><li>Sharing. A migrated plugin starts private, and your GPT's existing users don't get access to it.</li></ul></div>
+    <div class="card"><ul class="x"><li>Custom actions. They don't transfer. OpenAI says rebuilding one "may require a custom MCP server and technical setup".</li></ul></div>
+    <div class="card"><ul class="x"><li>The link you sent customers. Making a plugin public requires a separate submission process.</li></ul></div>
   </div>
-  <p class="mute">Sources: <a href="${FAQ_URL}">OpenAI's retirement and migration FAQ</a> and creators reporting it in the <a href="https://community.openai.com/t/custom-gpt-retirement-no-equivalent-to-anyone-with-the-link-in-plugins-how-do-small-businesses-keep-serving-external-customers-after-dec-11/1400202">OpenAI developer forum</a>.</p>
+  <p class="mute">Source: <a href="${FAQ_URL}">OpenAI's retirement and migration FAQ</a>. See also creators discussing it in the <a href="https://community.openai.com/t/custom-gpt-retirement-no-equivalent-to-anyone-with-the-link-in-plugins-how-do-small-businesses-keep-serving-external-customers-after-dec-11/1400202">OpenAI developer forum</a>.</p>
 </section>
 
 <section>
