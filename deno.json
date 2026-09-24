@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "dev": "deno run --watch --unstable-kv -A main.ts",
+    "start": "deno run --unstable-kv -A main.ts",
+    "check": "deno check main.ts",
+    "test": "deno test --unstable-kv -A"
+  },
+  "imports": {
+    "hono": "npm:hono@4.13.8",
+    "unpdf": "npm:unpdf@1.8.1",
+    "yaml": "npm:yaml@2.9.1"
+  },
+  "unstable": ["kv"],
+  "compilerOptions": { "strict": true }
+}
