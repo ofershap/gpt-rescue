@@ -27,7 +27,7 @@ export MASTER_KEY=$(openssl rand -base64 32)   # keep it, it decrypts stored sec
 deno task dev
 ```
 
-Env vars: `MASTER_KEY` (required), `PUBLIC_URL` (optional, used in generated links), `KV_PATH` (optional local KV file).
+Env vars: `MASTER_KEY` (required: base64 32 bytes, or any random secret of 16+ characters), `PUBLIC_URL` (optional, used in generated links), `KV_PATH` (optional local KV file).
 
 Deploys as-is to Deno Deploy (Deno KV is built in).
 
